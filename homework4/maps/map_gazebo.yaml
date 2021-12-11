@@ -1,4 +1,4 @@
-image: map_gazebo.pgm
+image: maps/map_gazebo.pgm
 resolution: 0.050000
 origin: [-7.535225, -5.380822, 0.000000]
 negate: 0
