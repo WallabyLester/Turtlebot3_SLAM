@@ -14,6 +14,8 @@ The package contains 4 launchfiles:
 
 `explore.launch` - Launches the slam_toolbox and the explore node to autonomously map the environment. 
 
+If you run into errors with the turtlebot3 environment variable run: `export TURTLEBOT3_MODEL=burger`
+
 ## Usage Instructions
 1. To launch `start_slam.launch`, run `roslaunch homework4 start_slam.launch`
     Use the argument `launch_gazebo:=true` to launch in Gazebo and `launch_gazebo:=false` to launch on the robot. 
@@ -23,20 +25,23 @@ The package contains 4 launchfiles:
 2. To launch `nav_stack.launch`, run `roslaunch homework4 nav_stack.launch`
     Use the argument `launch_gazebo:=true` to launch in Gazebo and `launch_gazebo:=false` to launch on the robot. 
 
-    Move the robot using the 2D navigation goals in `Rviz`. Video is at 1.5x speed.
+    Move the robot using the 2D navigation goals in `Rviz`.
 
     ![turtlebot3_nav](gifs/turtlebot3_nav.gif "turtlebot3_nav.gif")
+    ![turtlebot3_nav_real](gifs/turtlebot3_nav_real.gif "turtlebot3_nav_real.gif")
 
 
 3. To launch `slam_stack.launch`, run `roslaunch homework4 slam_stack.launch`
     Use the argument `launch_gazebo:=true` to launch in Gazebo and `launch_gazebo:=false` to launch on the robot. 
 
-    Move the robot using the 2D navigation goals in `Rviz`. Video is at 1.8x speed.
+    Move the robot using the 2D navigation goals in `Rviz`.
 
     ![turtlebot3_slam](gifs/turtlebot3_slam.gif "turtlebot3_slam.gif")
+    ![turtlebot3_slam_real](gifs/turtlebot3_slam_real.gif "turtlebot3_slam_real.gif")
 
 4. To launch `explore.launch`, run `roslaunch homework4 explore.launch`
     Use the argument `launch_gazebo:=true` to launch in Gazebo and `launch_gazebo:=false` to launch on the robot. 
 
     ![turtlebot3_exploration](gifs/turtlebot3_exploration.gif "turtlebot3_exploration.gif")
+    ![turtlebot3_exploration_real](gifs/turtlebot3_exploration_real.gif "turtlebot3_exploration_real.gif")
 

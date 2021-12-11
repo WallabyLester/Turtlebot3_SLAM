@@ -14,9 +14,6 @@ SUBSCRIBERS:
 import rospy
 import actionlib 
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from actionlib_msgs.msg import GoalStatus
-from geometry_msgs.msg import Pose, Point, Quaternion
-from tf.transformations import quaternion_from_euler
 from nav_msgs.msg import OccupancyGrid, Odometry
 import numpy as np
 
@@ -50,7 +47,7 @@ class Explore():
         self.x = data.pose.pose.position.x
         self.y = data.pose.pose.position.y
         self.move_goal()
-        # rospy.sleep(5)
+        rospy.sleep(5)
 
     def move_goal(self):
         """ Set goal position for the move_base
@@ -73,6 +70,7 @@ class Explore():
         goal.target_pose.pose.orientation.w = 1.0
 
         self.move_base.send_goal(goal)
+        # self.move_base.send_goal_and_wait(goal, execute_timeout=rospy.Duration(9))
         rospy.logdebug("sent goal")
 
 
