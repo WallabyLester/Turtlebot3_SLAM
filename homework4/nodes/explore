@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 """
-Node which causes the robot to explore the environment autonomously while mapping the world
+Node which causes the robot to explore the environment autonomously while mapping the world.
 
+ACTIONS:
+    + move_base (move_base_msgs/MoveBase) ~ moves a robot to desired positions using navigation
+
+SUBSCRIBERS:
+    + /odom (Odometry) ~ position and velocity in free space 
+    + /map (OccupancyGrid) ~ a 2-D grid map where each cell represents the probability of occupancy
 
 """
 
@@ -15,6 +21,8 @@ from nav_msgs.msg import OccupancyGrid, Odometry
 import numpy as np
 
 class Explore():
+    """ Subsribes to current robot location and publishes action goals to explore an area
+    """
     def __init__(self):
         self.move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
         self.move_base.wait_for_server(rospy.Duration(5.0))
@@ -28,6 +36,17 @@ class Explore():
         pass
 
     def receive_odometry(self, data):
+        """ Callback for the /odom subscriber
+
+        Receives the robot's odometry to give the current location
+
+        Args: 
+            data (Pose) : the robot's pose
+
+        Returns:
+            None
+        
+        """
         self.x = data.pose.pose.position.x
         self.y = data.pose.pose.position.y
         self.move_goal()
@@ -37,6 +56,12 @@ class Explore():
         """ Set goal position for the move_base
         
         Moves robot based on the goal position
+
+        Args: 
+            None
+
+        Returns:
+            None
         
         """
         goal = MoveBaseGoal()
@@ -52,6 +77,8 @@ class Explore():
 
 
 def main():
+    """ Main function
+    """
     rospy.init_node('explore', log_level=rospy.DEBUG)
     explore = Explore()
     rospy.spin()
