@@ -1,0 +1,12 @@
+<launch>
+    <arg name="launch_gazebo" default="true" />
+
+    <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch" if="$(arg launch_gazebo)">
+    </include>
+
+    <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+        <arg name="model" value="burger"/>
+        <arg name="map_file" value="$(find turtlebot3_slam)/map_gazebo.yaml" if="$(arg launch_gazebo)"/>
+        <arg name="map_file" value="$(find turtlebot3_slam)/map_real.yaml" unless="$(arg launch_gazebo)"/>
+    </include>
+</launch>
