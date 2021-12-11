@@ -12,7 +12,7 @@
         <arg name="model" value="burger" />
     </include>
 
-    <include file="$(find slam_toolbox)/online_async.launch"/>
+    <include file="$(find slam_toolbox)/online_sync.launch"/>
 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
         args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
