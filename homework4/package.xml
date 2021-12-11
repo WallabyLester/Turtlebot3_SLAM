@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>turtlebot3_slam</name>
+  <name>homework4</name>
   <version>0.0.1</version>
   <description>SLAM using the turtlebot3</description>
 
