@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   move_base_msgs
   nav_msgs
   rospy
+  tf2_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -113,6 +114,7 @@ catkin_package(
     move_base_msgs
     nav_msgs
     rospy
+    tf2_ros
 #  DEPENDS system_lib
 )
 

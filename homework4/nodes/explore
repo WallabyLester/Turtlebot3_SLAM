@@ -11,20 +11,27 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from actionlib_msgs.msg import GoalStatus
 from geometry_msgs.msg import Pose, Point, Quaternion
 from tf.transformations import quaternion_from_euler
-from nav_msgs.msg import OccupancyGrid
+from nav_msgs.msg import OccupancyGrid, Odometry
 import numpy as np
 
 class Explore():
     def __init__(self):
         self.move_base = actionlib.SimpleActionClient('move_base', MoveBaseAction)
-        self.move_base.wait_for_server()
+        self.move_base.wait_for_server(rospy.Duration(5.0))
 
         self.map = OccupancyGrid()
         self.map_data = rospy.Subscriber('/map', OccupancyGrid, self.map_callback)
+        self.odom = rospy.Subscriber('/odom', Odometry, self.receive_odometry)
 
 
     def map_callback(self, data):
         pass
+
+    def receive_odometry(self, data):
+        self.x = data.pose.pose.position.x
+        self.y = data.pose.pose.position.y
+        self.move_goal()
+        # rospy.sleep(5)
 
     def move_goal(self):
         """ Set goal position for the move_base
@@ -36,11 +43,12 @@ class Explore():
 
         goal.target_pose.header.frame_id = "map"
         goal.target_pose.header.stamp = rospy.Time.now()
-        goal.target_pose.pose.position.x = 0
-        goal.target_pose.pose.position.y = 0
+        goal.target_pose.pose.position.x = self.x + np.random.uniform(0, 1)
+        goal.target_pose.pose.position.y = self.y + np.random.uniform(0, 1)
         goal.target_pose.pose.orientation.w = 1.0
 
         self.move_base.send_goal(goal)
+        rospy.logdebug("sent goal")
 
 
 def main():
