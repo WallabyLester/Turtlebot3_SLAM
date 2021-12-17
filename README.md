@@ -1,4 +1,4 @@
-# Homework 4 SLAM Exploration
+# Turtlebot3 SLAM Exploration
 **Andru Liu**
 
 ## Overview
